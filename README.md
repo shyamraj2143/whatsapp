@@ -1,102 +1,189 @@
 <p align="center">
-  <img src="docs/assets/videoapp-banner.svg" alt="VideoApp — real-time communication platform" width="100%" />
+  <img src="docs/assets/videoapp-hero-3d.svg" width="100%" alt="VideoApp — colorful 3D realtime communication platform" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-active%20development-7A36D1?style=for-the-badge" alt="Status: active development" />
-  <img src="https://img.shields.io/badge/backend-Node.js-1E5631?style=for-the-badge&logo=node.js" alt="Node.js" />
-  <img src="https://img.shields.io/badge/mobile-React%20Native-202A44?style=for-the-badge&logo=react" alt="React Native" />
-  <img src="https://img.shields.io/badge/realtime-Socket.IO-161616?style=for-the-badge&logo=socket.io" alt="Socket.IO" />
+  <img src="https://img.shields.io/badge/STATUS-ACTIVE%20DEVELOPMENT-FF4FBF?style=for-the-badge" alt="Active development" />
+  <img src="https://img.shields.io/badge/MOBILE-REACT%20NATIVE-8A5CFF?style=for-the-badge&logo=react&logoColor=white" alt="React Native" />
+  <img src="https://img.shields.io/badge/REALTIME-SOCKET.IO-00CDEB?style=for-the-badge&logo=socket.io&logoColor=white" alt="Socket.IO" />
+  <img src="https://img.shields.io/badge/DATA-MONGODB-2DCB75?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
 </p>
 
-<h1 align="center">VideoApp</h1>
-<p align="center"><strong>A production-minded communication monorepo for messaging, audio/video calling, Android delivery, public releases and administration.</strong></p>
+<p align="center">
+  <a href="#-communication-experience">Experience</a> ·
+  <a href="#-platform-architecture">Architecture</a> ·
+  <a href="#-monorepo-universe">Structure</a> ·
+  <a href="#-local-launch">Setup</a> ·
+  <a href="#-android-release-engine">Releases</a> ·
+  <a href="#-production-checklist">Production</a>
+</p>
 
-> **Project status:** active development. This repository is organized as a multi-surface product with backend, mobile, website, shared assets and deployment tooling.
+<h1 align="center">VIDEOAPP</h1>
+<h3 align="center">A multi-surface communication product for messaging, audio/video calls, Android delivery and platform operations.</h3>
 
-## Product overview
+<p align="center">
+  VideoApp combines a Node.js backend, React Native Android client, public website, admin dashboard, realtime events and release tooling inside one production-minded monorepo.
+</p>
 
-VideoApp brings the main parts of a modern communication platform into one repository:
+---
 
-| Surface | Responsibility |
-|---|---|
-| **Backend** | Authentication, sessions, messaging, realtime events, administration, releases and logs |
-| **Mobile** | Expo React Native Android client and production build configuration |
-| **Website** | Public landing page, updates, APK release surface and admin dashboard |
-| **Shared** | Reusable product copy and Android release metadata |
-| **Deployment** | Docker, Caddy, CI and hosting-provider configuration |
+## ✨ Communication Experience
 
-## Architecture
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### 💬 Realtime Messaging
+
+Socket-driven communication foundations with delivery events, session-aware authentication and mobile-first interaction flows.
+
+</td>
+<td width="33%" valign="top">
+
+### 📞 Audio + Video Calls
+
+Communication architecture designed for incoming, outgoing and active call states across mobile and web surfaces.
+
+</td>
+<td width="33%" valign="top">
+
+### 📱 Android Product Layer
+
+React Native client, environment-aware builds, release metadata and production APK configuration.
+
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top">
+
+### 🛡️ Admin Operations
+
+System statistics, user controls, bans, announcements, releases and operational log visibility.
+
+</td>
+<td width="33%" valign="top">
+
+### 🌍 Public Website
+
+Landing experience, updates, FAQ, testimonials, SEO and APK release/download surfaces.
+
+</td>
+<td width="33%" valign="top">
+
+### 🚀 Release Automation
+
+CI verification, Android artifacts, shared release metadata, minimum supported versions and deployment tooling.
+
+</td>
+</tr>
+</table>
+
+## 🎛️ Product Control Matrix
+
+| Product area | User-facing capability | Engineering layer |
+|---|---|---|
+| **Authentication** | Secure login and device sessions | Access tokens, refresh tokens and revocation |
+| **Messaging** | Realtime conversations and delivery events | Socket.IO event layer |
+| **Calling** | Audio/video communication flows | Mobile call states and realtime signaling foundations |
+| **Mobile** | Android-first app experience | Expo React Native and environment embedding |
+| **Administration** | User, release and system controls | Protected admin APIs and dashboard |
+| **Public releases** | Updates, changelogs and APK information | Shared metadata and website synchronization |
+| **Security** | Safer uploads and session control | Rate limiting, stricter validation and structured logs |
+| **Delivery** | Repeatable production builds | Docker, CI, Caddy and hosting-provider configs |
+
+## 🌐 Platform Architecture
 
 ```mermaid
 flowchart LR
-    M[Android Client] --> API[Node.js + Express API]
-    W[Public Website] --> API
-    A[Admin Dashboard] --> API
-    M <--> S[Socket.IO Realtime Layer]
-    S <--> API
-    API --> DB[(MongoDB)]
+    MOBILE[React Native Android] --> API[Node.js + Express API]
+    WEB[Public Website] --> API
+    ADMIN[Admin Dashboard] --> API
+    MOBILE <--> SOCKET[Socket.IO Realtime Layer]
+    SOCKET <--> API
     API --> AUTH[Access + Refresh Tokens]
-    API --> RELEASES[Release Metadata]
-    RELEASES --> W
-    CI[GitHub Actions] --> BUILDS[Web / Android Artifacts]
+    API --> DB[(MongoDB)]
+    API --> RELEASE[Release Metadata]
+    API --> LOGS[Structured Logs]
+    RELEASE --> WEB
+    CI[GitHub Actions] --> VERIFY[Tests + Type Checks + Build]
+    VERIFY --> ARTIFACTS[Website + Android Artifacts]
 ```
 
-## Core capabilities
-
-### Communication platform
-
-- Realtime messaging through Socket.IO
-- Android-focused communication client
-- Audio/video communication foundations
-- Device sessions with access and refresh tokens
-- Session revocation and structured authentication flows
-
-### Operations and administration
-
-- Admin APIs for system statistics
-- User bans and moderation controls
-- Announcements and Android release management
-- Log viewing and operational visibility
-- Release notes, minimum supported build and force-update metadata
-
-### Public product surface
-
-- Marketing landing page
-- Updates and release-notes page
-- APK download and release metadata
-- Live download counts
-- Testimonials, FAQ and SEO-oriented public pages
-
-### Delivery and security
-
-- Rate limiting and upload restrictions
-- Environment-specific configuration layers
-- Docker and reverse-proxy deployment scaffolding
-- CI verification and Android release workflows
-- Production secret separation from committed source files
-
-## Repository structure
+## 🧬 Monorepo Universe
 
 ```text
 .
 ├── backend/      # Node.js, Express, MongoDB and Socket.IO API
 ├── mobile/       # Expo React Native Android client
-├── website/      # Public site, updates and admin dashboard
-├── shared/       # Shared copy and Android release metadata
-├── deploy/       # VPS, Docker and Caddy deployment assets
+├── website/      # Landing, updates, downloads and admin dashboard
+├── shared/       # Product copy and Android release metadata
+├── deploy/       # Docker, VPS and Caddy assets
 └── .github/      # CI, website deployment and Android release workflows
 ```
 
-## Local development
+| Folder | Why it exists |
+|---|---|
+| `backend/` | Authentication, messaging, realtime events, admin APIs, releases and logs |
+| `mobile/` | Android client, build profiles and runtime endpoint configuration |
+| `website/` | Public product surface, updates and admin dashboard |
+| `shared/` | One source of truth for release metadata and reusable content |
+| `deploy/` | VPS deployment and reverse-proxy configuration |
+| `.github/` | Automated verification, website deployment and Android release workflows |
 
-### Requirements
+## ⚡ Core Capabilities
 
-- Node.js and npm
-- A reachable MongoDB instance
-- Expo tooling for mobile development
+### Communication and identity
 
-### 1. Install dependencies
+- Realtime messaging through Socket.IO
+- Access and refresh-token authentication
+- Device sessions and session revocation
+- Audio/video call foundations
+- Mobile-first interaction flow
+
+### Administration and moderation
+
+- System statistics
+- User bans and moderation controls
+- Announcements
+- Android release management
+- Operational log viewing
+
+### Public product experience
+
+- Marketing landing page
+- Product updates and changelog page
+- APK download information
+- Live download counts
+- Testimonials and FAQ
+- SEO-oriented pages
+
+### Security and delivery
+
+- Rate limiting
+- Stricter upload handling
+- Structured application logs
+- Environment-separated configuration
+- Docker and reverse-proxy deployment
+- CI and release automation
+
+## 🪐 Technology Stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=nodejs,express,mongodb,react,ts,js,docker,githubactions,nginx,androidstudio,git&perline=6" alt="VideoApp technology stack" />
+</p>
+
+| Layer | Technologies |
+|---|---|
+| **Backend** | Node.js, Express, MongoDB and Socket.IO |
+| **Mobile** | Expo, React Native and Android build configuration |
+| **Website** | Public site, updates and administration surfaces |
+| **Security** | JWT-style access/refresh flows, rate limits and session revocation |
+| **Operations** | Docker, PM2, Caddy, GitHub Actions and provider configs |
+
+## ⚙️ Local Launch
+
+<details open>
+<summary><strong>1 — Install project dependencies</strong></summary>
 
 ```bash
 npm install
@@ -104,35 +191,48 @@ npm install --prefix website
 npm install --prefix mobile
 ```
 
-### 2. Configure environment files
+</details>
+
+<details open>
+<summary><strong>2 — Configure environments</strong></summary>
+
+Windows:
 
 ```powershell
 copy .env.example .env
 ```
 
-Review the environment files for each runtime:
+Review:
 
 - `website/.env.development`
 - `website/.env.production`
 - `mobile/.env.development`
 - `mobile/.env.production`
 
-### 3. Start backend and website
+The backend expects `MONGO_URI` and uses port `3000` by default.
+
+</details>
+
+<details open>
+<summary><strong>3 — Start backend and website</strong></summary>
 
 ```bash
 npm run dev:backend
 npm run dev:website
 ```
 
-The backend expects a real MongoDB connection through `MONGO_URI` and uses port `3000` by default.
+</details>
 
-### 4. Start the mobile client
+<details open>
+<summary><strong>4 — Start mobile development</strong></summary>
 
 ```bash
 npm run dev:mobile
 ```
 
-## Environment loading order
+</details>
+
+## 🧱 Environment Layering
 
 The backend loads configuration in this order:
 
@@ -141,18 +241,18 @@ The backend loads configuration in this order:
 3. `.env.local`
 4. `.env.<NODE_ENV>.local`
 
-Templates are included for development, staging and production environments.
+This keeps local overrides separate from staging and production values.
 
-## Admin dashboard
+## 🛡️ Admin Command Center
 
 | Route | Purpose |
 |---|---|
 | `/` | Public landing page |
-| `/updates` | Product updates and release notes |
-| `/admin/login` | Administrator login |
-| `/admin` | Administration dashboard |
+| `/updates` | Updates and release notes |
+| `/admin/login` | Administrator authentication |
+| `/admin` | Operational dashboard |
 
-Admin authentication uses:
+Admin variables:
 
 ```text
 ADMIN_EMAIL=...
@@ -166,15 +266,26 @@ Generate a password hash:
 npm run admin:hash-password -- "YourStrongPassword"
 ```
 
-## Android release workflow
+## 📲 Android Release Engine
 
-Update shared Android release metadata:
+```mermaid
+flowchart LR
+    META[Update release metadata] --> SYNC[Sync shared assets]
+    SYNC --> HEALTH[Validate backend health]
+    HEALTH --> APK[Build signed APK]
+    HEALTH --> AAB[Build AAB]
+    APK --> RELEASE[Publish artifact]
+    AAB --> RELEASE
+    RELEASE --> SITE[Public updates/download surface]
+```
+
+Update metadata:
 
 ```bash
 npm run release:android -- --version 1.1.0 --build 12 --apk-url https://example.com/videoapp.apk --min-supported 10 --notes "Security hardening|Admin dashboard|Force update support"
 ```
 
-Sync shared release assets into the website:
+Sync shared assets:
 
 ```bash
 npm run sync:shared-assets
@@ -193,17 +304,19 @@ Direct EAS production build:
 eas build -p android --profile production
 ```
 
-The recommended project command remains `npm run build:android:apk --prefix mobile` because it validates the backend health endpoint before upload. Production environment values are embedded through `mobile/app.config.js` so installed builds keep the correct API and socket endpoints.
+The project APK command is recommended because it validates `/health` before upload. `mobile/app.config.js` embeds production endpoints into the installed application configuration.
 
-## Deployment targets
+## 🚢 Deployment Matrix
 
-| Component | Supported targets |
+| Component | Targets |
 |---|---|
 | Website | GitHub Pages, Netlify or Vercel |
-| Backend | Render, Railway or VPS Docker deployment |
+| Backend | Render, Railway or VPS Docker |
 | Database | MongoDB Atlas or another managed MongoDB service |
+| Reverse proxy | Caddy-based VPS configuration |
+| Process manager | PM2 |
 
-Included deployment assets:
+Included assets:
 
 - `render.yaml`
 - `website/netlify.toml`
@@ -214,36 +327,49 @@ Included deployment assets:
 - `.github/workflows/deploy-website.yml`
 - `.github/workflows/android-release.yml`
 
-## Process management
-
-Run the API with PM2:
+## 🔁 Process Management
 
 ```bash
 npm run start:backend:pm2
 ```
 
-## Verification
-
-Run the complete project verification suite:
+## ✅ Verification Suite
 
 ```bash
 npm run verify
 ```
 
-The verification path covers:
+The verification command covers:
 
 - Backend tests
 - Mobile TypeScript checks
 - Website production build
 
-## Production checklist
+## 🗺️ Product Roadmap
+
+- [x] Production-minded monorepo structure
+- [x] Backend authentication and device sessions
+- [x] Realtime Socket.IO foundation
+- [x] Admin and release APIs
+- [x] Public website and updates surface
+- [x] Docker and CI assets
+- [x] Android release metadata workflow
+- [ ] Expanded automated communication tests
+- [ ] Stronger realtime observability
+- [ ] Broader device and background-state verification
+
+## 🏭 Production Checklist
 
 - Replace placeholder domains in `website/public/sitemap.xml`.
-- Store all production secrets in the hosting provider or GitHub Actions secrets.
-- Use a managed MongoDB instance with backups and access controls.
+- Keep production credentials outside the repository.
+- Use managed MongoDB with backups and network restrictions.
 - Publish only signed Android artifacts.
-- Keep release metadata synchronized between shared assets and the public website.
+- Synchronize release metadata before publishing.
+- Verify API and socket endpoints in production builds.
 
 ---
 
-<p align="center"><strong>Designed and engineered by Shyamraj.</strong></p>
+<p align="center">
+  <strong>Designed and engineered by Shyamraj.</strong><br/>
+  <sub>Realtime systems · Android products · Full-stack communication</sub>
+</p>
